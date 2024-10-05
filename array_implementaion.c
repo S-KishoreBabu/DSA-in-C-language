@@ -1,3 +1,18 @@
+/*
+Array Implementation and operations 
+
+ 1) Display the array values
+ 2) Insert value at end 
+ 3) insert value at specific postion
+ 4) Insert value at 0th index
+ 5) Delete the last index value
+ 6) Delete a specific value
+ 7) delete a specific index
+ 8) delete a value of 0th index
+ 9) Search a specific value in array
+*/
+
+
 #include<stdio.h>
 #define MAXSIZE 50
 int arr[MAXSIZE];
@@ -114,7 +129,7 @@ int main(){
             case 6:
                 if(size!=0){
                     int val=getvalue();
-                    int pos=getpos()
+                    int pos=getpos();
                     deletebypos(pos);
                 }else{
                     printf(" Array is empty");
