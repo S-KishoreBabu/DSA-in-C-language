@@ -10,6 +10,7 @@ Array Implementation and operations
  7) delete a specific index
  8) delete a value of 0th index
  9) Search a specific value in array
+ 
 */
 
 
@@ -129,8 +130,13 @@ int main(){
             case 6:
                 if(size!=0){
                     int val=getvalue();
-                    int pos=getpos();
-                    deletebypos(pos);
+                    int pos=search(val);
+                    if(pos!=-1){
+                        deletebypos(pos);
+                    }
+                    else{
+                        printf("val is not exist");
+                    }                            
                 }else{
                     printf(" Array is empty");
                 }             
