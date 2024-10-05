@@ -50,6 +50,15 @@ void deletebypos(int pos){
     }
 }
 
+int search(int val){
+    for(int i=0;i<size;i++){
+        if(arr[i]==val){
+            return i;
+        }
+    }
+    return -1;
+}
+
 int main(){
     int option=0;
     
@@ -99,7 +108,7 @@ int main(){
                 if(size!=0){
                     deletebypos(size-1);
                 }else{
-                    printf(" Array is empty")
+                    printf(" Array is empty");
                 } 
                 break;
             case 6:
@@ -109,7 +118,7 @@ int main(){
                     int pos=getpos();
                     deletebypos(pos);
                 }else{
-                    printf(" Array is empty")
+                    printf(" Array is empty");
                 }                 
                 break;
             case 8:
@@ -120,6 +129,18 @@ int main(){
                 } 
                 break; 
             case 9:
+                if(size!=0){
+                    int value=getvalue();
+                    int pos=search(value);
+                    if(pos!=-1){
+                        printf("index = %d",pos);
+                    }
+                    else{
+                        printf("val is not exist");
+                    }                
+                }else{
+                    printf(" Array is empty");
+                }
                 break;               
 
         }
