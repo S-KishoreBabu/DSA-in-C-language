@@ -112,6 +112,13 @@ int main(){
                 } 
                 break;
             case 6:
+                if(size!=0){
+                    int val=getvalue();
+                    int pos=getpos()
+                    deletebypos(pos);
+                }else{
+                    printf(" Array is empty");
+                }             
                 break;
             case 7:
                 if(size!=0){
