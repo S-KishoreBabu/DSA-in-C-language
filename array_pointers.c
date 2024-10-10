@@ -1,4 +1,4 @@
-//get array values function and sum of array values function using pointers
+//completed - get array values function and sum of array values function using pointers
 
 #include<stdio.h>
 

@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include<stdio.h>// not completed
 #include<stdlib.h>
 
 struct lnode{

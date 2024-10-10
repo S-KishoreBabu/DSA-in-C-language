@@ -1,5 +1,5 @@
 /*
-Array Implementation and operations 
+completed - Array Implementation and operations 
 
  1) Display the array values
  2) Insert value at end 
