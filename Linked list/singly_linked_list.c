@@ -38,6 +38,25 @@ void display(){
     printf(" ]");
     //printf("%d",temp->data);
 }
+
+void insertatpos(int pos,int val){
+    node* newnode = (node*)malloc(sizeof(node));
+    node* temp;
+    newnode->data=val;
+    if(pos == 0){
+        insertatbeginning(val);
+    }
+    else{
+        temp=head;
+        for(int i = 0;i < pos;i++){
+            temp->next=temp;
+        }
+        printf("\nval = %d",temp->data);
+        
+    }
+
+}
+
 void insertatend(int val){
     node* newnode=(node*)malloc(sizeof(node));
     if(head==NULL){
@@ -64,7 +83,7 @@ int main(){
     while(option!=10){
         printf("\n Enter option : ");
         scanf("%d",&option);
-        int val;
+        int val,pos;
         switch(option){
             case 1: 
                 display();
@@ -75,7 +94,12 @@ int main(){
                 insertatend(val);            
                 break;
             case 3:
-
+                printf("Enter the value : ");
+                scanf("%d",&val);
+                printf("Enter the postion : ");
+                scanf("%d",&pos);
+                insertatpos(val,pos);
+                
                 break;
             case 4:
                 printf("Enter the value : ");
