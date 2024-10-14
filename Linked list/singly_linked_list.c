@@ -1,4 +1,4 @@
-#include <stdio.h> // not completed
+#include <stdio.h> // completed
 #include <stdlib.h>
 
 struct lnode
@@ -83,6 +83,72 @@ void insertatend(int val)
     }
 }
 
+deleteatbeginning()
+{
+    node *temp;
+    temp = head;
+    head = head->next;
+    free(temp);
+}
+
+void deletebypos(int pos)
+{
+    node *newnode = (node *)malloc(sizeof(node));
+    if (pos == 0)
+    {
+        deleteatbeginning();
+    }
+    else
+    {
+        node *temp;
+        node *prev;
+        prev = head;
+        temp = prev->next;
+        for (int i = 0; i < pos - 1; i++)
+        {
+            prev = prev->next;
+            temp = temp->next;
+        }
+        prev->next = temp->next;
+        free(temp);
+    }
+}
+
+void deletelastnode()
+{
+    node *temp;
+    node *prev;
+    prev = head;
+    temp = head->next;
+    printf("\n Temp data = %d", temp->data);
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+        prev = prev->next;
+    }
+    printf("\n Temp data = %d", temp->data);
+    prev->next = NULL;
+    free(temp);
+}
+
+int search(int val)
+{
+    node *temp;
+    temp = head;
+    int pos = 0;
+    int searchval = -1;
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+        pos++;
+        if (temp->data == val)
+        {
+            searchval = pos;
+        }
+    }
+    return searchval;
+}
+
 int main()
 {
     int option = 0;
@@ -96,43 +162,65 @@ int main()
         int val, pos;
         switch (option)
         {
-        case 1:
+        case 1: // display
             display();
             break;
-        case 2:
+        case 2: // Insert node at end
             printf("Enter the value : ");
             scanf("%d", &val);
             insertatend(val);
             break;
-        case 3:
+        case 3: // Insert at specific position
             printf("Enter the value : ");
             scanf("%d", &val);
             printf("Enter the postion : ");
             scanf("%d", &pos);
             insertatpos(val, pos);
-
             break;
-        case 4:
+        case 4: // Insert node at beginning
             printf("Enter the value : ");
             scanf("%d", &val);
             insertatbeginning(val);
             break;
-        case 5:
-
+        case 5: // Delete the last Node
+            deletelastnode();
             break;
-        case 6:
-
+        case 6: // Delete a specific node by value
+            printf("\n Enter the  value to search : ");
+            scanf("%d", &val);
+            int pos = search(val);
+            if (pos != -1)
+            {
+                deletebypos(pos);
+            }
+            else
+            {
+                printf("\n Value %d not found", val);
+            }
             break;
-        case 7:
-
+        case 7: //  Delete a specific node by pos
+            printf("Enter the postion : ");
+            scanf("%d", &pos);
+            deletebypos(pos);
             break;
-        case 8:
+        case 8: //  Delete a beginning node
 
+            deleteatbeginning();
             break;
-        case 9:
-
+        case 9: //  Search a specific value in linked list
+            printf("\n Enter the  value to search : ");
+            scanf("%d", &val);
+            int pos = search(val);
+            if (pos != -1)
+            {
+                printf("\n Value %d found at position %d", val, pos);
+            }
+            else
+            {
+                printf("\n Value %d not found", val);
+            }
             break;
-        default:
+        default: // Invalid option
             printf("You Entered wrong input");
             break;
         }
