@@ -19,4 +19,5 @@ This repository contains my implementations of various data structures in C. The
 
 If you spot any issues or have suggestions for improving the code, feel free to open an issue or submit a pull request. Any help is appreciated!
 
-![DSA](https://github.com/user-attachments/assets/94db7d7f-b5ab-4511-95bd-a53060c4f52c)
+![Screenshot 2024-10-18 202202](https://github.com/user-attachments/assets/7010ea45-f95b-4425-b37f-46d533d1a5a0)
+
