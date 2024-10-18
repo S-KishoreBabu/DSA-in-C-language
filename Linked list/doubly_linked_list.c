@@ -91,7 +91,7 @@ void    insert_begin(int val){
     head = newnode;
 }
 
-void deletebypos(int val, int pos){
+void deletebypos(int pos){
     if(pos==0){
         if(head->next!=NULL){
             node* temp=head;
@@ -106,12 +106,12 @@ void deletebypos(int val, int pos){
     }
     else{
         node* temp = head;
-        for(int i=0;i<pos-1;i++){
+        for(int i=0;i<pos;i++){
             temp = temp->next;
         }
         if(temp->next==NULL){
             //node*  temp2 = temp;
-            temp->prev=tail;
+            tail=temp->prev;
             temp->prev->next=NULL;
             free(temp);
         }
@@ -123,9 +123,18 @@ void deletebypos(int val, int pos){
     }
 }
 
+void deleteatbeginning(){
+  if(head!=NULL){
+    deletebypos(0);
+  }
+  else{
+    printf("Liiist is Empty");
+  }
+}
+
 void deletelastnode(){
     if(head==NULL){
-        printf("\n List is empty");
+        printf("\n Liist is empty");
     }
     else{
         if(head->next==NULL){
@@ -133,6 +142,22 @@ void deletelastnode(){
             head=NULL;
         }
     }
+}
+
+int search(int val){
+    node* temp;
+    if(head!=NULL){
+        temp=head;
+        int pos=-1;
+        while(temp!=NULL){
+            pos++;
+            if(temp->data==val){
+                return pos;
+            }
+            temp=temp->next;
+        }
+    }
+    return -1;
 }
 
 int main()
@@ -172,39 +197,45 @@ int main()
             deletelastnode();
             break;
         case 6: // Delete a specific node by value
-            // printf("\n Enter the  value to search : ");
-            // scanf("%d", &val);
-            // int pos = search(val);
-            // if (pos != -1)
-            // {
-            //     deletebypos(pos);
-            // }
-            // else
-            // {
-            //     printf("\n Value %d not found", val);
-            // }
+            printf("\n Enter the  value to delete : ");
+            scanf("%d", &val);
+            pos = search(val);
+            if (pos != -1)
+            {
+                deletebypos(pos);
+            }
+            else
+            {
+                printf("\n Value %d not found", val);
+            }
             break;
         case 7: //  Delete a specific node by pos
-            // printf("Enter the postion : ");
-            // scanf("%d", &pos);
-            // deletebypos(pos);
+            if(head==NULL){
+                printf("\n List is empty");
+            }
+            else{
+                printf("Enter the postion : ");
+                scanf("%d", &pos);
+                deletebypos(pos);           
+            }
             break;
+
         case 8: //  Delete a beginning node
 
-            // deleteatbeginning();
+            deleteatbeginning();
             break;
         case 9: //  Search a specific value in linked list
-            // printf("\n Enter the  value to search : ");
-            // scanf("%d", &val);
-            // int pos = search(val);
-            // if (pos != -1)
-            // {
-            //     printf("\n Value %d found at position %d", val, pos);
-            // }
-            // else
-            // {
-            //     printf("\n Value %d not found", val);
-            // }
+            printf("\n Enter the  value to search : ");
+            scanf("%d", &val);
+            pos = search(val);
+            if (pos != -1)
+            {
+                printf("\n Value %d found at position %d", val, pos);
+            }
+            else
+            {
+                printf("\n Value %d not found", val);
+            }
             break;
         default: // Invalid option
             printf("You Entered wrong input");
