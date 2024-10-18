@@ -1,3 +1,4 @@
+
 <h1>Data Structures in C🎯</h1>
 
 Welcome to my repository of Data Structures implemented in C language!
@@ -17,3 +18,5 @@ This repository contains my implementations of various data structures in C. The
 <h2>Contributing</h2>
 
 If you spot any issues or have suggestions for improving the code, feel free to open an issue or submit a pull request. Any help is appreciated!
+
+![DSA](https://github.com/user-attachments/assets/94db7d7f-b5ab-4511-95bd-a53060c4f52c)
