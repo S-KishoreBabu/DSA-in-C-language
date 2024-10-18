@@ -1,5 +1,5 @@
 /*
-Not completed - Doubly linked list
+Completed - Doubly linked list
 
  1) Display the list
  2) Insert newnode at end
