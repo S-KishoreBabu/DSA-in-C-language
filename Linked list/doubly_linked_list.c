@@ -13,148 +13,181 @@ Not completed - Doubly linked list
  10) Exit
 
 */
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct lnode{
+struct lnode
+{
     int data;
     struct lnode *next;
     struct lnode *prev;
 };
 
 typedef struct lnode node;
-node*  head = NULL;
-node*  tail = NULL;
+node *head = NULL;
+node *tail = NULL;
 
-void display(){
-    node* temp = head;
+void display()
+{
+    node *temp = head;
     printf("\n [ ");
-    while(temp != NULL){
+    while (temp != NULL)
+    {
         printf("%d ", temp->data);
         temp = temp->next;
     }
     printf(" ]");
 }
 
-void  insertatend(int val){
-    node* newnode = (node*)malloc(sizeof(node));
+void insertatend(int val)
+{
+    node *newnode = (node *)malloc(sizeof(node));
     newnode->data = val;
-    if(head==NULL){
-        newnode->next=NULL;
-        newnode->prev=NULL;
+    if (head == NULL)
+    {
+        newnode->next = NULL;
+        newnode->prev = NULL;
         head = newnode;
-        tail=newnode;
-
-    }else{
+        tail = newnode;
+    }
+    else
+    {
         newnode->next = NULL;
         newnode->prev = tail;
-        tail->next=newnode;
+        tail->next = newnode;
         tail = newnode;
     }
 }
 
-void   insertatpos(int val, int pos){
-    node* newnode = (node*)malloc(sizeof(node));
+void insertatpos(int val, int pos)
+{
+    node *newnode = (node *)malloc(sizeof(node));
     newnode->data = val;
-    if(pos==0){
+    if (pos == 0)
+    {
         insert_begin(val);
     }
-    else{
-        node* temp = head;
-        for(int i=0;i<pos-1;i++){
+    else
+    {
+        node *temp = head;
+        for (int i = 0; i < pos - 1; i++)
+        {
             temp = temp->next;
         }
-        if(temp->next==NULL){
+        if (temp->next == NULL)
+        {
             insertatend(val);
         }
-        else{
-            newnode->next=temp->next;
-            temp->next->prev=newnode;
-            temp->next=newnode;
-            newnode->prev=temp;
+        else
+        {
+            newnode->next = temp->next;
+            temp->next->prev = newnode;
+            temp->next = newnode;
+            newnode->prev = temp;
         }
-        
     }
 }
 
-void    insert_begin(int val){
-    node* newnode = (node*)malloc(sizeof(node));
+void insert_begin(int val)
+{
+    node *newnode = (node *)malloc(sizeof(node));
     newnode->data = val;
-    newnode->prev =  NULL;
-    if(head!=NULL){
+    newnode->prev = NULL;
+    if (head != NULL)
+    {
         newnode->next = head;
-        head->prev=newnode;
+        head->prev = newnode;
     }
-    else{
+    else
+    {
         newnode->next = NULL;
     }
     head = newnode;
 }
 
-void deletebypos(int pos){
-    if(pos==0){
-        if(head->next!=NULL){
-            node* temp=head;
+void deletebypos(int pos)
+{
+    if (pos == 0)
+    {
+        if (head->next != NULL)
+        {
+            node *temp = head;
             head->next->prev = NULL;
-            head=head->next;
-            free(temp);  
+            head = head->next;
+            free(temp);
         }
-        else{
+        else
+        {
             free(head);
-            head=NULL;
+            head = NULL;
         }
     }
-    else{
-        node* temp = head;
-        for(int i=0;i<pos;i++){
+    else
+    {
+        node *temp = head;
+        for (int i = 0; i < pos; i++)
+        {
             temp = temp->next;
         }
-        if(temp->next==NULL){
-            //node*  temp2 = temp;
-            tail=temp->prev;
-            temp->prev->next=NULL;
+        if (temp->next == NULL)
+        {
+            // node*  temp2 = temp;
+            tail = temp->prev;
+            temp->prev->next = NULL;
             free(temp);
         }
-        else{
-            temp->next->prev=temp->prev;
-            temp->prev->next=temp->next;
+        else
+        {
+            temp->next->prev = temp->prev;
+            temp->prev->next = temp->next;
             free(temp);
         }
     }
 }
 
-void deleteatbeginning(){
-  if(head!=NULL){
-    deletebypos(0);
-  }
-  else{
-    printf("Liiist is Empty");
-  }
+void deleteatbeginning()
+{
+    if (head != NULL)
+    {
+        deletebypos(0);
+    }
+    else
+    {
+        printf("Liiist is Empty");
+    }
 }
 
-void deletelastnode(){
-    if(head==NULL){
+void deletelastnode()
+{
+    if (head == NULL)
+    {
         printf("\n Liist is empty");
     }
-    else{
-        if(head->next==NULL){
+    else
+    {
+        if (head->next == NULL)
+        {
             free(head);
-            head=NULL;
+            head = NULL;
         }
     }
 }
 
-int search(int val){
-    node* temp;
-    if(head!=NULL){
-        temp=head;
-        int pos=-1;
-        while(temp!=NULL){
+int search(int val)
+{
+    node *temp;
+    if (head != NULL)
+    {
+        temp = head;
+        int pos = -1;
+        while (temp != NULL)
+        {
             pos++;
-            if(temp->data==val){
+            if (temp->data == val)
+            {
                 return pos;
             }
-            temp=temp->next;
+            temp = temp->next;
         }
     }
     return -1;
@@ -210,13 +243,15 @@ int main()
             }
             break;
         case 7: //  Delete a specific node by pos
-            if(head==NULL){
+            if (head == NULL)
+            {
                 printf("\n List is empty");
             }
-            else{
+            else
+            {
                 printf("Enter the postion : ");
                 scanf("%d", &pos);
-                deletebypos(pos);           
+                deletebypos(pos);
             }
             break;
 
@@ -239,7 +274,7 @@ int main()
             break;
         default: // Invalid option
             printf("You Entered wrong input");
-            //break;
+            // break;
         }
     }
     return 0;
