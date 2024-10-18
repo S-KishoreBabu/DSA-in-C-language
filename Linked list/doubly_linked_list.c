@@ -153,7 +153,7 @@ void deleteatbeginning()
     }
     else
     {
-        printf("Liiist is Empty");
+        printf("List is Empty");
     }
 }
 
@@ -161,7 +161,7 @@ void deletelastnode()
 {
     if (head == NULL)
     {
-        printf("\n Liist is empty");
+        printf("\n List is empty");
     }
     else
     {
