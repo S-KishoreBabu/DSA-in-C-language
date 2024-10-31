@@ -7,8 +7,10 @@
 int stack[MAXSIZE];
 int top = -1;
 
-bool isnotempty(){
-    if(top!=-1){
+bool isnotempty()
+{
+    if (top != -1)
+    {
         return true;
     }
     return false;
@@ -35,77 +37,94 @@ void push(int val)
     }
 }
 
-int pop(){
-    if(isnotempty){
-        int temp =  stack[top];
+int pop()
+{
+    if (isnotempty)
+    {
+        int temp = stack[top];
         top--;
         return temp;
     }
-    else{
+    else
+    {
         printf("stack is empty");
     }
 }
 
-int peek(){
-    if(isnotempty){
+int peek()
+{
+    if (isnotempty)
+    {
         return stack[top];
     }
 }
 
-void posofStack(){
-    printf("\n Top = %d ",top);
+void posofStack()
+{
+    printf("\n Top = %d ", top);
 }
 
-void display(){
-    if(isnotempty){
+void display()
+{
+    if (isnotempty)
+    {
         printf("\n\n");
-        for(int i=top;i>=0;i--){
-            printf("\n | %d | ",stack[i]);
+        for (int i = top; i >= 0; i--)
+        {
+            printf("\n | %d | ", stack[i]);
         }
-    }else{
+    }
+    else
+    {
         printf("\n stack is empty");
     }
 }
 
 int main()
 {
-    int n,x;
+    int n, x;
     printf("\n Choose the option :-  \n 1) push()  2) pop()  3) peek()  4) display  5) position of top");
-    while(1){
+    while (1)
+    {
         printf("\n Enter option : ");
-        scanf("%d",&n);
-        switch(n){
-            case 1:
-                printf("Enter  the value to push in stack :- ");
-                scanf("%d",&x);
-                push(x);
-                break;
-            case 2:
-                pop();
-                break;
-            case 3:
-            if(top != -1){
-                x=peek();
-                printf("Top value = %d",x);
+        scanf("%d", &n);
+        switch (n)
+        {
+        case 1:
+            printf("Enter  the value to push in stack :- ");
+            scanf("%d", &x);
+            push(x);
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            if (top != -1)
+            {
+                x = peek();
+                printf("Top value = %d", x);
             }
-            else{
+            else
+            {
                 printf("Stack is empty");
             }
             break;
-            case 4:
-            if(top!=-1){
+        case 4:
+            if (top != -1)
+            {
                 display();
             }
-            else{
+            else
+            {
                 printf("Stack is empty");
             }
             break;
-            case 5:
-                posofStack();
-                break;
-            default:
-                printf("\n You have entered wrong option");
-                exit(0);
+        case 5:
+            posofStack();
+            break;
+        default:
+            printf("\n You have entered wrong option");
+            exit(0);
         }
     }
     return 0;

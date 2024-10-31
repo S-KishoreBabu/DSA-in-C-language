@@ -41,7 +41,7 @@ void display()
     {
         printf("%d ", temp->data);
         temp = temp->next;
-    } while (temp != first); 
+    } while (temp != first);
     printf(" ] \n");
 }
 
@@ -64,32 +64,42 @@ void insertAtEnd(int val)
     }
 }
 
-void insertAtPos(int val, int pos){
-    if(pos==0){
+void insertAtPos(int val, int pos)
+{
+    if (pos == 0)
+    {
         insertAtbegin(val);
-    }else{
+    }
+    else
+    {
         node *temp;
         temp = first;
-        for(int i=0;i<=pos;i++){
-            temp=temp->next;
+        for (int i = 0; i <= pos; i++)
+        {
+            temp = temp->next;
         }
         printf("\n data = %d", temp->data);
     }
 }
 
-void insertAtpos(int val, int pos){
-    if(pos==0){
+void insertAtpos(int val, int pos)
+{
+    if (pos == 0)
+    {
         insertAtbegin(val);
     }
-    else{
+    else
+    {
         node *newnode = (node *)malloc(sizeof(node));
-        newnode->data=val;
+        newnode->data = val;
         node *temp = first;
-        for(int i=0;i<pos-1;i++){
-            
-            temp=temp->next;
+        for (int i = 0; i < pos - 1; i++)
+        {
+
+            temp = temp->next;
         }
-        if(temp==last){
+        if (temp == last)
+        {
             insertAtEnd(val);
         }
     }
