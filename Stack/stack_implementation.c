@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> // Not completed - stack implementation
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -47,7 +47,7 @@ int pop()
     }
     else
     {
-        printf("stack is empty");
+        printf("\n stack is empty");
     }
 }
 
