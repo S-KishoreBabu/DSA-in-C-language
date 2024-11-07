@@ -1,4 +1,6 @@
-#include<stdio.h>
+// sorting the linked list whille inserting the element
+
+#include<stdio.h>// Not completed
 #include<stdlib.h>
 
 struct lnode{
