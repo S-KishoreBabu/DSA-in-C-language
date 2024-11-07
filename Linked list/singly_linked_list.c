@@ -46,7 +46,6 @@ void insertatbeginning(int val)
 void display()
 {
     node *temp;
-    node *prev;
     temp = head;
     printf("[ ");
     while (temp != NULL)
@@ -100,7 +99,7 @@ void insertatend(int val)
     }
 }
 
-deleteatbeginning()
+void deleteatbeginning()
 {
     node *temp;
     temp = head;
