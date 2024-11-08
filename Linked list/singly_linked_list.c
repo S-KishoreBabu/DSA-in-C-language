@@ -2,15 +2,15 @@
 completed - Singly linked list
 
 1) Display the list
- 2) Insert newnode at end
- 3) insert newnode at specific postion
- 4) Insert newnode at beginning
- 5) Delete the last node
- 6) Delete a specific node by value
- 7) delete a specific node by position
- 8) delete a beginning node
- 9) Search a specific value in linked list
- 10) Exit
+2) Insert newnode at end
+3) insert newnode at specific postion
+4) Insert newnode at beginning
+5) Delete the last node
+6) Delete a specific node by value
+7) delete a specific node by position
+8) delete a beginning node
+9) Search a specific value in linked list
+10) Exit
 
 */
 
