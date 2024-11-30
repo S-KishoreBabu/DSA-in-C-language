@@ -39,16 +39,13 @@ void push(int val)
 
 int pop()
 {
-    if (isnotempty)
+    if (top!=-1)
     {
         int temp = stack[top];
         top--;
         return temp;
     }
-    else
-    {
-        printf("\n stack is empty");
-    }
+    printf("\n stack is empty");
 }
 
 int peek()

@@ -14,7 +14,6 @@ completed - Singly linked list
 
 */
 
-
 #include <stdio.h> // completed
 #include <stdlib.h>
 
@@ -71,8 +70,16 @@ void insertatpos(int val, int pos)
         temp = head;
         for (int i = 0; i < pos - 1; i++)
         {
-            temp = temp->next;
+            if (temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            else
+            {
+                break;
+            }
         }
+        printf("data = %d ", temp->data);
         newnode->next = temp->next;
         temp->next = newnode;
     }
@@ -84,27 +91,30 @@ void insertatend(int val)
     if (head == NULL)
     {
         insertatbeginning(val);
+        return;
     }
-    else
+    node *temp;
+    temp = head;
+    while (temp->next != NULL)
     {
-        node *temp;
-        temp = head;
-        while (temp->next != NULL)
-        {
-            temp = temp->next;
-        }
-        newnode->data = val;
-        newnode->next = NULL;
-        temp->next = newnode;
+        temp = temp->next;
     }
+    newnode->data = val;
+    newnode->next = NULL;
+    temp->next = newnode;
 }
 
 void deleteatbeginning()
 {
-    node *temp;
-    temp = head;
-    head = head->next;
-    free(temp);
+    if (head != NULL)
+    {
+        node *temp;
+        temp = head;
+        head = head->next;
+        free(temp);
+        return;
+    }
+    printf("Empty List");
 }
 
 void deletebypos(int pos)
@@ -113,21 +123,24 @@ void deletebypos(int pos)
     if (pos == 0)
     {
         deleteatbeginning();
+        return;
     }
-    else
+    node *temp;
+    node *prev;
+    prev = head;
+    temp = prev->next;
+    for (int i = 0; i < pos - 1; i++)
     {
-        node *temp;
-        node *prev;
-        prev = head;
-        temp = prev->next;
-        for (int i = 0; i < pos - 1; i++)
+        prev = prev->next;
+        temp = temp->next;
+        if (temp == NULL)
         {
-            prev = prev->next;
-            temp = temp->next;
+            printf("Invalid position");
+            return;
         }
-        prev->next = temp->next;
-        free(temp);
     }
+    prev->next = temp->next;
+    free(temp);
 }
 
 void deletelastnode()
@@ -204,7 +217,7 @@ int main()
         case 6: // Delete a specific node by value
             printf("\n Enter the  value to search : ");
             scanf("%d", &val);
-            int pos = search(val);
+            pos = search(val);
             if (pos != -1)
             {
                 deletebypos(pos);
@@ -220,7 +233,6 @@ int main()
             deletebypos(pos);
             break;
         case 8: //  Delete a beginning node
-
             deleteatbeginning();
             break;
         case 9: //  Search a specific value in linked list
