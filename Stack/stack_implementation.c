@@ -27,7 +27,7 @@ bool isnotfull()
 
 void push(int val)
 {
-    if (isnotfull)
+    if (top != MAXSIZE - 1)
     {
         stack[++top] = val;
     }
@@ -46,6 +46,7 @@ int pop()
         return temp;
     }
     printf("\n stack is empty");
+    return -1;
 }
 
 int peek()
@@ -54,6 +55,7 @@ int peek()
     {
         return stack[top];
     }
+    printf("\n stack is empty");
 }
 
 void posofStack()
@@ -80,8 +82,8 @@ void display()
 int main()
 {
     int n, x;
-    printf("\n Choose the option :-  \n 1) push()  2) pop()  3) peek()  4) display  5) position of top");
-    while (1)
+    printf("\n Choose the option :-  \n 1) push()  2) pop()  3) peek()  4) display  5) position of top 6) Exit");
+    do
     {
         printf("\n Enter option : ");
         scanf("%d", &n);
@@ -96,15 +98,8 @@ int main()
             pop();
             break;
         case 3:
-            if (top != -1)
-            {
-                x = peek();
-                printf("Top value = %d", x);
-            }
-            else
-            {
-                printf("Stack is empty");
-            }
+            x = peek();
+            if(top != -1){printf("Top value = %d", x);}
             break;
         case 4:
             if (top != -1)
@@ -121,8 +116,7 @@ int main()
             break;
         default:
             printf("\n You have entered wrong option");
-            exit(0);
         }
-    }
+    } while (n!=6);
     return 0;
 }
