@@ -1,12 +1,12 @@
 // Reversing a list
 
-#include<stdio.h>
-#include<conio.h>
+#include <stdio.h>
+#include <conio.h>
 
 #define MAXSIZE 10
 int stack[MAXSIZE];
 
-int top=-1;
+int top = -1;
 
 void push(int val)
 {
@@ -22,7 +22,7 @@ void push(int val)
 
 int pop()
 {
-    if (top!=-1)
+    if (top != -1)
     {
         int temp = stack[top];
         top--;
@@ -32,18 +32,17 @@ int pop()
     return -1;
 }
 
-int main(){
-    int arr[]={1,2,3,4,5,6,7};
-    for(int i=0;i<(sizeof(arr)/sizeof(arr[0]));i++){
-        printf("%d",arr[i]);
-        push(arr[i]);
-    }
-    for(int i=0;i<(sizeof(arr)/sizeof(arr[0]));i++){
-        arr[i]=pop();
-    }
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+
+    for (int i = 0; i < (sizeof(arr) / sizeof(arr[0])); i++){push(arr[i]);}
+    for (int i = 0; i < (sizeof(arr) / sizeof(arr[0])); i++){arr[i] = pop();}
+
     printf("\n Reversed List : ");
-    for(int i=0;i<(sizeof(arr)/sizeof(arr[0]));i++){
-        printf("%d",arr[i]);
+    for (int i = 0; i < (sizeof(arr) / sizeof(arr[0])); i++)
+    {
+        printf("%d", arr[i]);
     }
     return 0;
 }
