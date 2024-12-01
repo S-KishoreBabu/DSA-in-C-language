@@ -1,16 +1,16 @@
 /*
 Not Completed - Circular Singly linked list
 
- 1) Display the list
- 2) Insert newnode at end
- 3) Insert newnode at specific postion
- 4) Insert newnode at beginning
- 5) Delete the last node
- 6) Delete a specific node by value
- 7) Delete a specific node by position
- 8) Delete a beginning node
- 9) Search a specific value in linked list
- 10) Exit
+1) Display the list
+2) Insert newnode at end
+3) Insert newnode at specific postion
+4) Insert newnode at beginning
+5) Delete the last node
+6) Delete a specific node by value
+7) Delete a specific node by position
+8) Delete a beginning node
+9) Search a specific value in linked list
+10) Exit
 
 */
 
