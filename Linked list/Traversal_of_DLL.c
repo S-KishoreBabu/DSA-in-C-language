@@ -1,4 +1,5 @@
-#include <stdio.h> //completed - insertion and display of doubly linked list
+ //completed - insertion and display of doubly linked list
+#include <stdio.h>
 #include <stdlib.h>
 
 struct lnode

@@ -1,6 +1,6 @@
-// sorting the linked list whille inserting the element
+//Completed - sorting the linked list whille inserting the element
 
-#include<stdio.h>// Not completed
+#include<stdio.h>
 #include<stdlib.h>
 
 struct lnode{
