@@ -39,10 +39,11 @@ int main()
     for (int i = 0; i < (sizeof(arr) / sizeof(arr[0])); i++){push(arr[i]);}
     for (int i = 0; i < (sizeof(arr) / sizeof(arr[0])); i++){arr[i] = pop();}
 
-    printf("\n Reversed List : ");
+    printf("\n Reversed List : [");
     for (int i = 0; i < (sizeof(arr) / sizeof(arr[0])); i++)
     {
-        printf("%d", arr[i]);
+        printf(" %d ", arr[i]);
     }
+    printf("]");
     return 0;
 }
