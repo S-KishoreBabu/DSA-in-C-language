@@ -1,9 +1,10 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 // Not Completed - binary search tree implementation
 
-struct lnode{
+struct lnode
+{
     int data;
     struct lnode *right;
     struct lnode *left;
@@ -13,35 +14,41 @@ typedef struct lnode node;
 
 node *root = NULL;
 
-node* createNode(int val){
-    node *newNode = (node*)malloc(sizeof(node));
+node *createNode(int val)
+{
+    node *newNode = (node *)malloc(sizeof(node));
     newNode->data = val;
     newNode->right = NULL;
     newNode->left = NULL;
     return newNode;
 }
 
-void insert(int val,node *root){
+void insert(int val, node *root)
+{
     node *newnode = createNode(val);
     node *temp;
-    if(root == NULL ){
+    if (root == NULL)
+    {
         root = newnode;
         root = newnode;
     }
-    else if(val < root->data){
+    else if (val < root->data)
+    {
         temp = root;
-        insert(val,temp->left);
+        insert(val, temp->left);
     }
-    else if(val > root->data){
+    else if (val > root->data)
+    {
         temp = root;
-        insert(val,temp->right);
+        insert(val, temp->right);
     }
-    else{
+    else
+    {
         printf("value already exists\n");
     }
 }
 
-//level order traversal of binary search tree
+// level order traversal of binary search tree
 
 // void display(){
 //     if(root == NULL){
@@ -75,29 +82,31 @@ void insert(int val,node *root){
 //     }
 // }
 
-void preordertraversal(node* root){
-    if(root==NULL){
+void preordertraversal(node *root)
+{
+    if (root == NULL)
+    {
         return;
     }
-    else{
-        printf("%d ",root->data);
+    else
+    {
+        printf("%d ", root->data);
         preordertraversal(root->left);
         preordertraversal(root->right);
     }
 }
 
-
-
-
-int main(){
+int main()
+{
     int n;
     printf("Enter the number of elements you want to insert in the binary search tree:");
-    scanf("%d",&n);
-    for(int i=0;i<n;i++){
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
         int val;
         printf("Enter the element you want to insert : ");
-        scanf("%d",&val);
-        insert(val,root);
+        scanf("%d", &val);
+        insert(val, root);
     }
     printf("Preorder traversal of the binary search tree is : ");
     preordertraversal(root);
