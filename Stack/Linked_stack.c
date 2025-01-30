@@ -41,8 +41,8 @@ int pop()
         int val = temp->data;
         top = top->next;
         free(temp);
-        return val;
         n--;
+        return val;
     }
     printf("\n Stack is empty\n");
     return -1;
