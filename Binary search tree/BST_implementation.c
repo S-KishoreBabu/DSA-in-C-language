@@ -1,114 +1,101 @@
+// Online C compiler to run C program online
 #include <stdio.h>
-#include <stdlib.h>
+#include<stdlib.h>
 
-// Not Completed - binary search tree implementation
-
-struct lnode
-{
+struct ltree{
     int data;
-    struct lnode *right;
-    struct lnode *left;
+    struct ltree *left;
+    struct ltree *right;
 };
 
-typedef struct lnode node;
+typedef struct ltree node;
 
-node *root = NULL;
+node *Root=NULL;
 
-node *createNode(int val)
-{
-    node *newNode = (node *)malloc(sizeof(node));
-    newNode->data = val;
-    newNode->right = NULL;
-    newNode->left = NULL;
-    return newNode;
+node* createNode(int val){
+    node* nn=(node*)malloc(sizeof(node));
+    nn->data=val;
+    nn->left=NULL;
+    nn->right=NULL;
+    return nn;
 }
 
-void insert(int val, node *root)
-{
-    node *newnode = createNode(val);
-    node *temp;
-    if (root == NULL)
-    {
-        root = newnode;
-        root = newnode;
+void inorder(node* root){
+    if(root!=NULL){
+        printf(" %d ",root->data);
+        inorder(root->left);
+        // printf(" %d ",root->data);
+        inorder(root->right);
+        // printf(" %d ",root->data);
     }
-    else if (val < root->data)
-    {
-        temp = root;
-        insert(val, temp->left);
+    return;
+}
+int sum=0;
+int max=-1;
+void count(node* root){
+    if(root!=NULL){
+        sum++;
+        printf("\n %d ",sum);
+        if(max<sum){max=sum;}
+        count(root->left);
+        sum--;
+        count(root->right);  
+        
+    }else{
+        // sum--;
+        // printf(" %d ",sum);
     }
-    else if (val > root->data)
-    {
-        temp = root;
-        insert(val, temp->right);
-    }
-    else
-    {
-        printf("value already exists\n");
-    }
+    
+    
+    
+    return ;
 }
 
-// level order traversal of binary search tree
+void leaf(node* root){
+    if(root!=NULL){
+        if(root->right==NULL && root->left == NULL){
+            sum+=root->data;
+        }
+        leaf(root->left);
+        leaf(root->right);
+    }
+    return;
+}
 
-// void display(){
-//     if(root == NULL){
-//         printf("Tree is empty\n");
-//     }
-//     else{
-//         printf("Level Order Traversal of Binary Search Tree:\n");
-//         //int h = height(root);
-//         int i;
-//         for(i=1;i<=h;i++){
-//             printf("Level %d: ",i);
-//             //printGivenLevel(root,i);
-//             printf("\n");
-//         }
-//     }
-// }
 
-// int height(node *root){
-//     if(root == NULL){
-//         return 0;
-//     }
-//     else{
-//         int left_height = height(root->left);
-//         int right_height = height(root->right);
-//         if(left_height>right_height){
-//             return left_height+1;
-//         }
-//         else{
-//             return right_height+1;
-//         }
-//     }
-// }
-
-void preordertraversal(node *root)
-{
-    if (root == NULL)
-    {
+void insert(node **root,int val){
+    if(*root==NULL){
+        *root=createNode(val);
+        //printf(" %d ",(*root)->data);
         return;
     }
-    else
-    {
-        printf("%d ", root->data);
-        preordertraversal(root->left);
-        preordertraversal(root->right);
+    if((*root)->data<val){
+        insert(&((*root)->right),val);
+    }else if(val<(*root)->data){
+        insert(&((*root)->left),val);
     }
+    
 }
 
-int main()
-{
-    int n;
-    printf("Enter the number of elements you want to insert in the binary search tree:");
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++)
-    {
-        int val;
-        printf("Enter the element you want to insert : ");
-        scanf("%d", &val);
-        insert(val, root);
-    }
-    printf("Preorder traversal of the binary search tree is : ");
-    preordertraversal(root);
-    return 0;
+
+
+int main() {
+    insert(&Root,6);
+    insert(&Root,1);
+    insert(&Root,3);
+    insert(&Root,5);
+    insert(&Root,9);
+    insert(&Root,2);
+    insert(&Root,0);
+    insert(&Root,7);
+    inorder(Root);
+    printf("\n");
+    count(Root);
+    
+    printf("\n height= ");
+    // printf("s = %d ",sum);
+    leaf(Root);
+    printf("\nsum = %d ",sum);
+
+    return 0;
 }
