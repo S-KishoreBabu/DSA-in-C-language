@@ -1,5 +1,4 @@
-// Online C compiler to run C program online
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 
 struct ltree{
@@ -22,6 +21,17 @@ node* createNode(int val){
 
 void inorder(node* root){
     if(root!=NULL){
+        // printf(" %d ",root->data);
+        inorder(root->left);
+        printf(" %d ",root->data);
+        inorder(root->right);
+        // printf(" %d ",root->data);
+    }
+    return;
+}
+
+void preorder(node* root){
+    if(root!=NULL){
         printf(" %d ",root->data);
         inorder(root->left);
         // printf(" %d ",root->data);
@@ -30,26 +40,19 @@ void inorder(node* root){
     }
     return;
 }
-int sum=0;
-int max=-1;
-void count(node* root){
+
+void postorder(node* root){
     if(root!=NULL){
-        sum++;
-        printf("\n %d ",sum);
-        if(max<sum){max=sum;}
-        count(root->left);
-        sum--;
-        count(root->right);  
-        
-    }else{
-        // sum--;
-        // printf(" %d ",sum);
+        // printf(" %d ",root->data);
+        inorder(root->left);
+        // printf(" %d ",root->data);
+        inorder(root->right);
+        printf(" %d ",root->data);
     }
-    
-    
-    
-    return ;
+    return;
 }
+
+int sum=0;
 
 void leaf(node* root){
     if(root!=NULL){
@@ -79,7 +82,8 @@ void insert(node **root,int val){
 
 
 
-int main() {
+int main(){
+    system("cls");
     insert(&Root,6);
     insert(&Root,1);
     insert(&Root,3);
@@ -88,14 +92,13 @@ int main() {
     insert(&Root,2);
     insert(&Root,0);
     insert(&Root,7);
+    printf("\n Inorder   Traversal : ");
     inorder(Root);
-    printf("\n");
-    count(Root);
-    
-    printf("\n height= ");
-    // printf("s = %d ",sum);
+    printf("\n preorder  Traversal : ");
+    preorder(Root);
+    printf("\n postorder Traversal : ");
+    postorder(Root);
     leaf(Root);
-    printf("\nsum = %d ",sum);
-
-    return 0;
+    printf("\nsum of leaf Node Values = %d ",sum);
+    return 0;
 }
