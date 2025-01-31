@@ -80,18 +80,15 @@ void insert(node **root,int val){
     
 }
 
-
-
 int main(){
+    int n,val;
     system("cls");
-    insert(&Root,6);
-    insert(&Root,1);
-    insert(&Root,3);
-    insert(&Root,5);
-    insert(&Root,9);
-    insert(&Root,2);
-    insert(&Root,0);
-    insert(&Root,7);
+    printf("\n Enter of Number of value to enter :  ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        scanf("%d",&n);
+        insert(&Root,val);
+    }
     printf("\n Inorder   Traversal : ");
     inorder(Root);
     printf("\n preorder  Traversal : ");
