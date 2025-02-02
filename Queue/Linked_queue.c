@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
+bool isqueueempty();
+
 struct queue{
     int data;
     struct queue *next;
@@ -11,6 +13,15 @@ struct queue{
 typedef struct queue q;
 q *head = NULL;
 q *tail = NULL;
+
+q* createqnode(int val);
+void enqueue(int val);
+q* dequeue();
+void display();
+int queuePeek();
+bool isqueueempty();
+
+
 
 q* createqnode(int val){
     q* node=(q*)malloc(sizeof(q));
