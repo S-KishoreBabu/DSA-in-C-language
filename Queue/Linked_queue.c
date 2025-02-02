@@ -33,13 +33,19 @@ void enqueue(int val){
 }
 
 q* dequeue(){
-    q* temp=tail;
-    tail=tail->prev;
-    tail->next=NULL;
-    temp->prev=NULL;
+    if (tail == NULL) {
+        return NULL; // Return NULL if the queue is empty
+    }
+    q* temp = tail;
+    tail = tail->prev;
+    if (tail != NULL) {
+        tail->next = NULL; // Set next of new tail to NULL
+    } else {
+        head = NULL; // If the queue is now empty, set head to NULL
+    }
+    temp->prev = NULL; // Clear the previous pointer of the dequeued node
     return temp;
 }
-
 
 void display(){
     if(head!=NULL){
@@ -55,41 +61,47 @@ void display(){
     printf("\n Queue is empty");
 }
 
-
 int queuePeek(){
-    if(head!=NULL){
-        return tail->data;
+    if (isqueueempty()) {
+        return -1; // Return an error value if the queue is empty
     }
-    printf("\n Queue is empty");
+    return tail->data;
 }
 
 bool isqueueempty(){
     return head==NULL;
 }
 
-
 int main(){
-    int n,val;
+    int n=0,val;
     system("cls");
-    printf("\n 1) Enqueue \n 2) Dequeue \n 3) Peek \n 4 display the queue \n 5) Exit \n Select the Operation to Perform : ");
-    scanf("%d",&n);
+    printf("\n 1) Enqueue \n 2) Dequeue \n 3) Peek \n 4 display the queue \n 5) Exit");
     while(n!=5){
+        printf("\n Select the Operation to Perform : ");
+        scanf("%d",&n);
         switch(n){
             case 1:
                 printf("\n Enter the value to enqueue : ");
                 scanf("%d",&val);
+                enqueue(val); // Enqueue the value after reading it
                 break;
             case 2:
                 if(head!=NULL){
                     q* node = dequeue();
                     printf("\n Dequeued node value is %d ",node->data);
+                    free(node); // Free the memory of the dequeued node
                 }
                 else{
                     printf("\n Queue is empty");
                 }
                 break;
             case 3:
-                printf("\n peek value = %d ",queuePeek());
+                if(head!=NULL){
+                    printf("\n peek value = %d ",queuePeek());
+                }
+                else{
+                    printf("\n Queue is empty");
+                }
                 break;
             case 4:
                 display();
@@ -103,7 +115,3 @@ int main(){
     }
     return 0;
 }
-
-
-
-
