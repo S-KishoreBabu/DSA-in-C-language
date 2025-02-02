@@ -40,6 +40,25 @@ q* dequeue(){
         return temp;
     }
     printf("\n queue is Empty");
+    return;
 }
+
+
+void display(){
+    if(head!=NULL){
+        q* temp=head;
+        printf("NULL <-> ");
+        while(temp!=NULL){
+            printf("%d <-> ",temp->data);
+            temp=temp->next;
+        }
+        printf("NULL");
+        return;
+    }
+    printf("\n Queue is empty");
+}
+
+
+
 
 
