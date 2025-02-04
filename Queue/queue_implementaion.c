@@ -8,16 +8,19 @@ int front=-1;
 int rear=-1;
 
 void enqueue(int val){
+    
     if(rear==MAXSIZE-1){
         printf("Overflow");
     }
     else if(front==-1 && rear==-1){
-        rear=front=0;
+        rear=0;
+        front=0;
     }
     else{
-        front++;
+        rear++;
     }
     queue[rear]=val;
+    printf("\n %d,\n fronnt = %d rear = %d",queue[rear],front,rear);
 }
 
 int dequeue(){
@@ -28,11 +31,13 @@ int dequeue(){
 
     int temp=queue[front];
 
-    if(front==rear)
-        front=rear=-1;
-    else
+    if(front==rear){
+        front=-1;
+        rear=-1;
+    }
+    else{
         front++;
-    
+    }
     return temp;
 }
 
@@ -61,7 +66,7 @@ void display(){
 int main(){
     int n=0,val;
     system("cls");
-    printf("\n 1) Enqueue \n 2) Dequeue \n 3) Peek \n 4 display the queue \n 5) Exit");
+    printf("\n 1) Enqueue \n 2) Dequeue \n 3) Peek \n 4) display the queue \n 5) Exit");
     while(n!=5){
         printf("\n Select the Operation to Perform : ");
         scanf("%d",&n);
@@ -84,6 +89,12 @@ int main(){
             case 4:
                 display();
                 break;
+
+
+
+
+
+
             case 5:
                 exit(0);
                 break;
