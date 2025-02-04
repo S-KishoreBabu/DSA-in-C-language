@@ -1,3 +1,4 @@
+// Completed - doubly linked queue 
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
@@ -60,11 +61,11 @@ q* dequeue(){
 
 void display(){
     if(head!=NULL){
-        q* temp=head;
+        q* temp=tail;
         printf("NULL <-> ");
         while(temp!=NULL){
             printf("%d <-> ",temp->data);
-            temp=temp->next;
+            temp=temp->prev;
         }
         printf("NULL");
         return;
