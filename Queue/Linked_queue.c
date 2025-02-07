@@ -46,16 +46,16 @@ void enqueue(int val){
 
 q* dequeue(){
     if (tail == NULL) {
-        return NULL; // Return NULL if the queue is empty
+        return NULL; 
     }
     q* temp = tail;
     tail = tail->prev;
     if (tail != NULL) {
-        tail->next = NULL; // Set next of new tail to NULL
+        tail->next = NULL; 
     } else {
-        head = NULL; // If the queue is now empty, set head to NULL
+        head = NULL; 
     }
-    temp->prev = NULL; // Clear the previous pointer of the dequeued node
+    temp->prev = NULL; 
     return temp;
 }
 
@@ -75,7 +75,7 @@ void display(){
 
 int queuePeek(){
     if (isqueueempty()) {
-        return -1; // Return an error value if the queue is empty
+        return -1; 
     }
     return tail->data;
 }
