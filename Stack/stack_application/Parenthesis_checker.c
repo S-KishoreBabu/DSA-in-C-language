@@ -17,6 +17,31 @@ void push(char ch){
     }
 }
 
+void pop(){
+    if(top!=-1){
+        top--;
+    }
+}
+
+
+bool isValidParenthesis(char *str){
+    for(int i=0;i<strlen(str);i++){
+        if(str[i]=='(' || str[i]=='{' || str[i]=='['){
+            push(str[i]);
+        }
+        else if(str[i]==')' || str[i]=='}' || str[i]==']'){
+            pop();
+        }
+    }
+    
+    if(top==-1){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 int main(){
     system("cls");
     char str[]="(A+(B-C))";
