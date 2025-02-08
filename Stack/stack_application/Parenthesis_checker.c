@@ -21,6 +21,9 @@ void pop(){
     if(top!=-1){
         top--;
     }
+    else{
+        printf("Stack is empty\n");
+    }
 }
 
 
@@ -33,7 +36,7 @@ bool isValidParenthesis(char *str){
             pop();
         }
     }
-    
+
     if(top==-1){
         return true;
     }
