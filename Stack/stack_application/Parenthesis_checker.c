@@ -2,6 +2,7 @@
 #include<math.h>
 #include<stdlib.h>
 #include<stdbool.h>
+#include<string.h>
 
 #define max 20
 
@@ -18,12 +19,7 @@ void push(char ch){
 }
 
 void pop(){
-    if(top!=-1){
         top--;
-    }
-    else{
-        printf("Stack is empty\n");
-    }
 }
 
 
@@ -47,7 +43,7 @@ bool isValidParenthesis(char *str){
 
 int main(){
     system("cls");
-    char str[]="(A+(B-C))";
+    char str[]="(A+(B-C)))";
     if(isValidParenthesis(str)){
         printf("\n Valid Expression");
     }
