@@ -6,7 +6,7 @@
 #include<stdbool.h>
 #include<string.h>
 
-#define max 20
+#define max 60
 
 char stack[max];
 int top=-1;
@@ -29,23 +29,31 @@ bool isValidParenthesis(char *str){
     for(int i=0;i<strlen(str);i++){
         if(str[i]=='(' || str[i]=='{' || str[i]=='['){
             push(str[i]);
+            printf("\n %c-> %d\n",str[i],top);
         }
-        else if(str[i]==')' || str[i]=='}' || str[i]==']'){
-            pop();
+        if(str[i]==')' || str[i]=='}' || str[i]==']'){
+            if(top==-1){
+                return false;
+            }
+            if((str[i]==')' && ( stack[top]=='{' || stack[top]=='[' ))|| 
+                (str[i]=='}' && ( stack[top]=='(' || stack[top]=='[' ))||
+                (str[i]==']' && ( stack[top]=='{' || stack[top]=='('))){
+                return false;
+            }else{
+                printf("\n top = %d",top);
+                pop();
+            }
         }
     }
-
-    if(top==-1){
-        return true;
-    }
-    else{
+    if(top>-1){
         return false;
     }
-}
+    return true;
 
+}
 int main(){
     system("cls");
-    char str[]="(A+(B-C)))";
+    char str[]="(a[b{c]d}e)";
     if(isValidParenthesis(str)){
         printf("\n Valid Expression");
     }
