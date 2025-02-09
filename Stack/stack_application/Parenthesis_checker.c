@@ -1,4 +1,4 @@
-//Complete - Checking the valid parenthesis using stack
+// * Complete - Checking the valid parenthesis using stack
 
 #include<stdio.h>
 #include<math.h>
@@ -25,11 +25,10 @@ void pop(){
 }
 
 
-bool isValidParenthesis(char *str){
-    for(int i=0;i<strlen(str);i++){
+bool isValidParenthesis(char *str){ // @param str: string containing parenthesis
+    for(int i=0;i<strlen(str);i++){  
         if(str[i]=='(' || str[i]=='{' || str[i]=='['){
             push(str[i]);
-            printf("\n %c-> %d\n",str[i],top);
         }
         if(str[i]==')' || str[i]=='}' || str[i]==']'){
             if(top==-1){
@@ -52,8 +51,8 @@ bool isValidParenthesis(char *str){
 
 }
 int main(){
-    system("cls");
-    char str[]="(a[b{c]d}e)";
+    system("cls"); // clear the console
+    char str[]="(a[b{c]d}e)"; // TODO : input string
     if(isValidParenthesis(str)){
         printf("\n Valid Expression");
     }
