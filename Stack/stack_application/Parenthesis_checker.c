@@ -52,7 +52,7 @@ bool isValidParenthesis(char *str){ // @param str: string containing parenthesis
 }
 int main(){
     system("cls"); // clear the console
-    char str[]="(a[b{c]d}e)"; // TODO : input string
+    char str[]="()"; // TODO : input string
     if(isValidParenthesis(str)){
         printf("\n Valid Expression");
     }
