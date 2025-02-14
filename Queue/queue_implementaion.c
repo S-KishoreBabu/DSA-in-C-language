@@ -20,7 +20,6 @@ void enqueue(int val){
         rear++;
     }
     queue[rear]=val;
-    printf("\n %d,\n fronnt = %d rear = %d",queue[rear],front,rear);
 }
 
 int dequeue(){
