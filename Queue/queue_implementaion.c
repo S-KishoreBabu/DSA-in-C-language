@@ -88,12 +88,6 @@ int main(){
             case 4:
                 display();
                 break;
-
-
-
-
-
-
             case 5:
                 exit(0);
                 break;
