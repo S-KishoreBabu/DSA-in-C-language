@@ -73,7 +73,7 @@ int main(){
             case 1:
                 printf("\n Enter the value to enqueue : ");
                 scanf("%d",&val);
-                enqueue(val); // Enqueue the value after reading it
+                enqueue(val);
                 break;
             case 2:
                 val= dequeue();
