@@ -8,8 +8,7 @@ int main(){
     system("cls");
     printf("Enter the value of n : ");
     scanf("%d", &n);
-    do
-    {
+    do{
         sum += i;
         i++;
     } while (i <= n);
