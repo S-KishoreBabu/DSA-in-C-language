@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
+int main(){
     int n, sum = 0, i = 0;
     float result;
     system("cls");
