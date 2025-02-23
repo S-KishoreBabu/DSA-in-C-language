@@ -15,4 +15,5 @@ int main(){
     result = (float)sum / n;
     printf("\n The Average of first %d numbers = %.2lf ", n, result);
     return 0;
+    
 }
