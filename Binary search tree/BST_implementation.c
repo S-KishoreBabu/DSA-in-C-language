@@ -66,18 +66,22 @@ void leaf(node* root){
 }
 
 
-void insert(node **root,int val){
-    if(*root==NULL){
-        *root=createNode(val);
-        //printf(" %d ",(*root)->data);
-        return;
+void insertBST(node *root,int val){
+    while(root != NULL){
+        if(root->data<val){
+            root=root->right;
+        }else{
+            root=root->left;
+        }
     }
-    if((*root)->data<val){
-        insert(&((*root)->right),val);
-    }else if(val<(*root)->data){
-        insert(&((*root)->left),val);
-    }
-    
+    root=createNode(val);
+}
+
+void inorderTraversal(node* root) {
+    if (root == NULL) return;
+    inorderTraversal(root->left);
+    printf("%d ", root->data);
+    inorderTraversal(root->right);
 }
 
 int main(){
@@ -85,17 +89,20 @@ int main(){
     system("cls");
     printf("\n Enter of Number of value to enter :  ");
     scanf("%d",&n);
+    node *root = NULL;
     for(int i=0;i<n;i++){
         scanf("%d",&n);
-        insert(&Root,val);
+        insertBST(root,val);
     }
-    printf("\n Inorder   Traversal : ");
-    inorder(Root);
-    printf("\n preorder  Traversal : ");
-    preorder(Root);
-    printf("\n postorder Traversal : ");
-    postorder(Root);
-    leaf(Root);
-    printf("\nsum of leaf Node Values = %d ",sum);
+    inorderTraversal(root);
+    
+    // printf("\n Inorder   Traversal : ");
+    // inorder(Root);
+    // printf("\n preorder  Traversal : ");
+    // preorder(Root);
+    // printf("\n postorder Traversal : ");
+    // postorder(Root);
+    // leaf(Root);
+    // printf("\nsum of leaf Node Values = %d ",sum);
     return 0;
 }
