@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
+
 struct ltree{
     int data;
     struct ltree *left;
@@ -8,8 +10,9 @@ struct ltree{
 };
 
 typedef struct ltree node;
+void inorderTraversal(node* root);
 
-node *Root=NULL;
+//node *Root=NULL;
 
 node* createNode(int val){
     node* nn=(node*)malloc(sizeof(node));
@@ -19,62 +22,75 @@ node* createNode(int val){
     return nn;
 }
 
-void inorder(node* root){
-    if(root!=NULL){
-        // printf(" %d ",root->data);
-        inorder(root->left);
-        printf(" %d ",root->data);
-        inorder(root->right);
-        // printf(" %d ",root->data);
+// void inorder(node* root){
+//     if(root!=NULL){
+//         // printf(" %d ",root->data);
+//         inorder(root->left);
+//         printf(" %d ",root->data);
+//         inorder(root->right);
+//         // printf(" %d ",root->data);
+//     }
+//     return;
+// }
+
+// void preorder(node* root){
+//     if(root!=NULL){
+//         printf(" %d ",root->data);
+//         inorder(root->left);
+//         // printf(" %d ",root->data);
+//         inorder(root->right);
+//         // printf(" %d ",root->data);
+//     }
+//     return;
+// }
+
+// void postorder(node* root){
+//     if(root!=NULL){
+//         // printf(" %d ",root->data);
+//         inorder(root->left);
+//         // printf(" %d ",root->data);
+//         inorder(root->right);
+//         printf(" %d ",root->data);
+//     }
+//     return;
+// }
+
+// int sum=0;
+
+// void leaf(node* root){
+//     if(root!=NULL){
+//         if(root->right==NULL && root->left == NULL){
+//             sum+=root->data;
+//         }
+//         leaf(root->left);
+//         leaf(root->right);
+//     }
+//     return;
+// }
+
+
+node* insertBST(node *root,int val){
+    node *nn=createNode(val);
+    node *curr=root;
+    node *prev=NULL;
+    if (root == NULL) {
+        return nn; // If the tree is empty, the new node becomes the root
     }
-    return;
-}
-
-void preorder(node* root){
-    if(root!=NULL){
-        printf(" %d ",root->data);
-        inorder(root->left);
-        // printf(" %d ",root->data);
-        inorder(root->right);
-        // printf(" %d ",root->data);
-    }
-    return;
-}
-
-void postorder(node* root){
-    if(root!=NULL){
-        // printf(" %d ",root->data);
-        inorder(root->left);
-        // printf(" %d ",root->data);
-        inorder(root->right);
-        printf(" %d ",root->data);
-    }
-    return;
-}
-
-int sum=0;
-
-void leaf(node* root){
-    if(root!=NULL){
-        if(root->right==NULL && root->left == NULL){
-            sum+=root->data;
-        }
-        leaf(root->left);
-        leaf(root->right);
-    }
-    return;
-}
-
-
-void insertBST(node *root,int val){
-    while(root != NULL){
-        if(root->data<val){
-            root=root->right;
+    while(curr != NULL){
+        prev=curr;
+        if(curr->data<val){
+            curr=curr->right;
         }else{
-            root=root->left;
+            curr=curr->left;
         }
     }
-    root=createNode(val);
+    if(prev->data<val){
+        prev->right=nn;
+    }else{
+        prev->left=nn;
+    }
+
+    return root;
 }
 
 void inorderTraversal(node* root) {
@@ -89,20 +105,12 @@ int main(){
     system("cls");
     printf("\n Enter of Number of value to enter :  ");
     scanf("%d",&n);
-    node *root = NULL;
+    node *Root = NULL;
     for(int i=0;i<n;i++){
-        scanf("%d",&n);
-        insertBST(root,val);
+        printf("\n Enter = ");
+        scanf("%d",&val);
+        insertBST(Root,val);
     }
-    inorderTraversal(root);
-    
-    // printf("\n Inorder   Traversal : ");
-    // inorder(Root);
-    // printf("\n preorder  Traversal : ");
-    // preorder(Root);
-    // printf("\n postorder Traversal : ");
-    // postorder(Root);
-    // leaf(Root);
-    // printf("\nsum of leaf Node Values = %d ",sum);
+    inorderTraversal(Root);
     return 0;
 }
