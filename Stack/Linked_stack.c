@@ -1,4 +1,9 @@
-//Not - Completed
+// * completed - linked stack
+
+
+
+// ! don't push decimal values 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
@@ -9,6 +14,7 @@ struct lnode
     int data;
     struct lnode *next;
 };
+
 int n = -1;
 typedef struct lnode node;
 
@@ -66,14 +72,8 @@ void display()
     }
 }
 
-int peek()
-{
-    if (top != NULL)
-    {
-        int val = top->data;
-        return val;
-    }
-    printf("stack is empty");
+int peek(){
+    return (top != NULL)?top->data:-1;
 }
 
 void posofStack()
@@ -100,10 +100,11 @@ int main()
             pop();
             break;
         case 3:
-            x = peek();
-            if (top != NULL)
+            if (peek() != -1)
             {
-                printf("Top value = %d", x);
+                printf("Top value = %d", peek());
+            }else{
+                printf("stack is empty");
             }
             break;
         case 4:

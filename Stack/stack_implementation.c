@@ -1,4 +1,8 @@
-#include <stdio.h> // Not completed - stack implementation
+// * completed - stack implementation
+
+// ! don't push decimal values 
+
+#include <stdio.h> 
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -7,27 +11,17 @@
 int stack[MAXSIZE];
 int top = -1;
 
-bool isnotempty()
-{
-    if (top != -1)
-    {
-        return true;
-    }
-    return false;
+bool isEmpty(){
+    return (top == -1)?true:false;
 }
 
-bool isnotfull()
-{
-    if (top == MAXSIZE - 1)
-    {
-        return false;
-    }
-    return true;
+bool isFull(){
+    return (top == MAXSIZE - 1)?true:false;
 }
 
 void push(int val)
 {
-    if (top != MAXSIZE - 1)
+    if (!isFull())
     {
         stack[++top] = val;
     }
@@ -39,7 +33,7 @@ void push(int val)
 
 int pop()
 {
-    if (top!=-1)
+    if (!isEmpty())
     {
         int temp = stack[top];
         top--;
@@ -49,13 +43,8 @@ int pop()
     return -1;
 }
 
-int peek()
-{
-    if (isnotempty)
-    {
-        return stack[top];
-    }
-    printf("\n stack is empty");
+int peek(){
+    return (!isEmpty())?stack[top]:-1;
 }
 
 void posofStack()
@@ -65,7 +54,7 @@ void posofStack()
 
 void display()
 {
-    if (isnotempty)
+    if (!isEmpty())
     {
         printf("\n\n");
         for (int i = top; i >= 0; i--)
@@ -98,18 +87,15 @@ int main()
             pop();
             break;
         case 3:
-            x = peek();
-            if(top != -1){printf("Top value = %d", x);}
+            if (peek() != -1)
+            {
+                printf("Top value = %d", peek());
+            }else{
+                printf("stack is empty");
+            }
             break;
         case 4:
-            if (top != -1)
-            {
-                display();
-            }
-            else
-            {
-                printf("Stack is empty");
-            }
+            display();
             break;
         case 5:
             posofStack();
@@ -117,6 +103,6 @@ int main()
         default:
             printf("\n You have entered wrong option");
         }
-    } while (n!=6);
+    } while (n != 6);
     return 0;
 }

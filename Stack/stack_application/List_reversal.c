@@ -1,4 +1,4 @@
-// Reversing a list
+// * Completed - Reversing a list
 
 #include <stdio.h>
 #include <conio.h>
