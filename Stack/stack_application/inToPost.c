@@ -1,4 +1,4 @@
-// ! Not completed : Infix to postfix Expresion
+// * completed : Infix to postfix Expresion
 
 // ! suitable for valid expression
 
@@ -12,14 +12,11 @@ bool isHighPriority(char,char);
 
 
 char *infixToPostfix(char *arr){
-    char stack[20];
-    int top = -1;
-    char *result = (char*)malloc(20);
-    int size = -1;
+    char stack[20],*result = (char*)malloc(sizeof(arr+1));
+    int top = -1,size = -1;
     for(int i = 0;i<strlen(arr);i++){
         if(isalpha(arr[i])){
             result[++size]=arr[i];
-            printf("\n Size = %d",size);
         }
         else if(arr[i]==')'){
             while(stack[top]!='('){
@@ -33,11 +30,10 @@ char *infixToPostfix(char *arr){
             }else{
                 while(top != -1 &&  stack[top]!='(' && !isHighPriority(arr[i],stack[top])){
                     result[++size]=stack[top--];
-                    printf("activated -> B ");
                 }
                 stack[++top] = arr[i];
-            }                                // * testing 
-        }                                                   // todo : retrive the remaining exp from stack
+            }
+        }
     }
     for(int i = top;i>=0;i--){
         result[++size] = stack[i];
@@ -67,11 +63,7 @@ bool isHighPriority(char a,char top){
     int priorityA, priorityTop;
     getPriority(a,&priorityA);
     getPriority(top,&priorityTop);
-
-    if(priorityTop<=priorityA){
-        return true;
-    }
-    return false; 
+    return (priorityTop<=priorityA)?true:false;
 }
 
 int main(){
