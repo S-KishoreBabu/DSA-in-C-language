@@ -41,12 +41,28 @@ Graph* createGraph(int NumberOfVertices){
 
 void addEdge(Graph *graph,int i,int j,char a,char b){
     node* newNode = createNode(j,b);
-    newNode->next = graph->list[i];
-    graph->list[i] = newNode;
+    if(graph->list[i]==NULL){
+        graph->list[i] = newNode;
+    }
+    else{
+        node * temp = graph->list[i];
+        while(temp->next!= NULL){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
 
     newNode = createNode(i,a);
-    newNode->next = graph->list[j];
-    graph->list[j] = newNode;
+    if(graph->list[j]==NULL){
+        graph->list[j] = newNode;
+    }
+    else{
+        node * temp = graph->list[j];
+        while(temp->next!= NULL){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
 }
 
 void display(Graph *graph) {
@@ -97,16 +113,11 @@ int main(){
     display(graph);
     printf("\n\n");
     addEdge(graph, 0, 1, graph->array[0], graph->array[1]);
-    addEdge(graph, 0, 2, graph->array[0], graph->array[2]);
+    addEdge(graph, 2, 3, graph->array[2], graph->array[3]);
+    addEdge(graph, 1, 2, graph->array[1], graph->array[2]);
+    addEdge(graph, 3, 4, graph->array[3], graph->array[4]);
     addEdge(graph, 0, 4, graph->array[0], graph->array[4]);
     addEdge(graph, 1, 4, graph->array[1], graph->array[4]);
-    addEdge(graph, 2, 3, graph->array[2], graph->array[3]);
-    addEdge(graph, 2, 5, graph->array[2], graph->array[5]);
-    addEdge(graph, 3, 4, graph->array[3], graph->array[4]);
-    addEdge(graph, 4, 6, graph->array[4], graph->array[6]);
-    addEdge(graph, 4, 7, graph->array[4], graph->array[7]);
-    addEdge(graph, 5, 6, graph->array[5], graph->array[6]);
-    addEdge(graph, 6, 7, graph->array[6], graph->array[7]);
     display(graph);
     BFS(graph);
     return 0;
