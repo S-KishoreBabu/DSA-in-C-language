@@ -76,18 +76,16 @@ void displayBFS(){
 
 
 void depthFirstSearch(Graph *graph,int i){
-    printf("%d",i);
+    printf("%d ",i);
     visited[++top] = i;
     node *temp = graph->list[i];
 
-    while(temp!=NULL && wasVisited(temp->val)){
+    while(temp!=NULL){
+        if(!wasVisited(temp->val)){
+            depthFirstSearch(graph, temp->val);
+        }
         temp = temp->next;
     }
-    if(temp!= NULL){
-        depthFirstSearch(graph, temp->val);
-    }
-    // displayBFS();
-    return;
 }
 
 
