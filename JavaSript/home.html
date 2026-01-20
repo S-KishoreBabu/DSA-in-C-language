@@ -4,10 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #grandParent{
+            width: 400px;
+            height: 400px;
+            background-color: lightblue;
+            padding: 20px;
+            border: 2px solid black;
+        }
+        #parent{
+            width: 300px;
+            height: 300px;
+            background-color: lightgreen;
+            padding: 20px;
+            border: 2px solid black;
+        }
+        #child{
+            width: 200px;
+            height: 200px;
+            background-color: lightcoral;
+            padding: 20px;
+            border: 2px solid black;
+        }
+
+        .socialMedia{
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+            background-color: rgb(255, 255, 88);
+            padding: 20px;
+            border: 2px solid black;
+        }
+        .socialMedia div{
+            width: max-content;
+            /* height: max-content; */
+            padding: 4px;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 8px -2px black;
+        }
+
+        .result{
+            margin-top: 20px;
+            font-size: 20px;
+            height: max-content;
+            width: max-content;
+            font-weight: bold;  
+            border: 2px soldid black;
+            background-color: rgb(255, 183, 76);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1 id="Heading">best quote in life</h1>
-    <button id="clickMe">Click</button>
-    <script src="finestCoder.js"></script>
+    <div id="grandParent">
+        <div id="parent">
+            <div id="child"></div>
+        </div>
+    </div>
+
+    <div class="socialMedia">
+        <div id="https://www.youtube.com"><h1>youtube</h1></div>
+        <div id="https://www.google.com"><h1>google</h1></div>
+        <div id="https://www.facebook.com"><h1>facebook</h1></div>
+    </div>
 </body>
+<script>
+    const grandParent = document.querySelector('#grandParent');
+    const parent = document.querySelector('#parent');
+    const child = document.querySelector('#child');
+    let flag = false;
+    var count = 0;
+
+    grandParent.addEventListener('click',()=>{
+        setTimeout(()=>{
+            grandParent.style.backgroundColor = "blue";
+            console.log(count);
+        },count*300);
+        count++;
+        console.log("grandparent clicked");
+    },flag)
+    parent.addEventListener('click',()=>{
+        setTimeout(()=>{
+            parent.style.backgroundColor = "green";
+        },count*300);
+        count++;
+        console.log("parent clicked");
+    },flag)
+    child.addEventListener('click',()=>{
+        setTimeout(()=>{
+            child.style.backgroundColor = "red";
+        },count*300);
+        count++;
+        console.log("child clicked");
+    },flag);
+
+    const socialMedia = document.querySelector(".socialMedia");
+
+    socialMedia.addEventListener("click", (event)=>{
+        console.log("->",event);
+        console.log(event.target);
+        const newdiv = document.createElement("p");
+        newdiv.innerHTML = `you clicked ${event.target.id}`;
+        document.body.appendChild(newdiv);
+        setTimeout(()=>{
+            location.href = event.target.id;
+        },3000);
+    })
+
+</script>
+<script src="finestCoder.js"></script>
 </html>
