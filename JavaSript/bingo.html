@@ -5,21 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        table {
-            border-collapse: collapse;
+        /* General page styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f9f9f9, #e6f0ff);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #ccc;
+        }
+
+        /* Result announcement */
+        #result {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 15px 0;
+        }
+
+        /* Bingo card container */
+        #bingo-card {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        /* Wrap each player block neatly */
+        .player-block {
+            display: flex;
+            flex-direction: column;   /* stack input above table */
+            align-items: center;      /* center horizontally */
             margin: 20px;
         }
-        
-        td, th {
-            border: 1px solid black;
-            padding: 10px;
+
+        /* Input styling */
+        .player-block input[type="text"] {
+            margin-bottom: 10px;
+            padding: 6px;
+            width: 120px;
             text-align: center;
-            width: 40px;
-            height: 40px;
+            font-size: 1rem;
+            border: 2px solid #3498db;
+            border-radius: 5px;
         }
+
+        /* Tables stay centered under input */
+        .player-block table {
+            margin: 0; /* remove extra margin */
+        }
+
+
+        /* Player tables */
+        table {
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        table:hover {
+            transform: scale(1.05);
+        }
+
+        /* Table caption */
         caption {
             font-weight: bold;
+            font-size: 1.2rem;
+            background: #3498db;
+            color: white;
+            padding: 8px;
+        }
+
+        /* Table cells */
+        td, th {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Highlighted cell */
+        td[style*="background-color: yellow"] {
+            background-color: #f1c40f !important;
+            color: #000;
+            border: 2px solid #e67e22;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+        }
+
+        /* Input field for BINGO progress */
+        input[type="text"] {
+            margin: 10px 0;
+            padding: 8px;
+            width: 100px;
+            text-align: center;
+            font-size: 1rem;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2ecc71;
+        }
+
+        /* Number provider section */
+        #number-provider {
+            margin-top: 30px;
+        }
+
+        #current-number {
+            font-size: 1.3rem;
             margin-bottom: 10px;
+            color: #8e44ad;
+            font-weight: bold;
+        }
+
+        /* Generate button */
+        button {
+            background: #3498db;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
         }
 
 
@@ -28,17 +165,27 @@
 </head>
 <body>
     <h1>Bingo Game</h1>
+    <div id="result"></div>
     <div id="bingo-card">
 
+    </div>
+    <!--  generate randon number provider from 1 to 25  to mark on tables -->
+
+    <div id="number-provider">
+        <div id="current-number">Current Number: </div>
+        <button id="generate-number">Generate Number</button>
     </div>
 
     <script src="bingo.js"></script>
     <script>
-        let NumberOfPlayers = 3;
+        let NumberOfPlayers = 4;
+        let booltables = {};
         function createTables(NumofPlayers){
             let tables = {};
             for(let p=1; p<=NumofPlayers; p++){
                 let table = new Array(5).fill(0).map(() => new Array(5).fill(0));
+                booltables[p] = JSON.parse(JSON.stringify(table));
+
                 let usedNumbers = new Set();
                 for(let col=0; col<5; col++){
                     for(let row=0; row<5; row++){
@@ -51,16 +198,25 @@
                         table[row][col] = num;
                     }
                 }
-
                 tables[p] = table;
             }
-            console.log(tables);
+            return tables;
         }
 
         // update ui by creating table elements in html
         function renderTables(tables){
             const container = document.getElementById('bingo-card');
             for(const player in tables){
+                const playerBlock = document.createElement('div');
+                playerBlock.classList.add('player-block');
+
+                // input field
+                const resultInput = document.createElement("input");
+                resultInput.type = "text";
+                resultInput.placeholder = "BINGO";
+                playerBlock.appendChild(resultInput);
+
+                // table
                 const table = document.createElement('table');
                 const caption = document.createElement('caption');
                 caption.textContent = `Player ${player}`;
@@ -75,14 +231,105 @@
                     }
                     table.appendChild(row);
                 }
-                container.appendChild(table);
-            }
 
+                playerBlock.appendChild(table);
+                container.appendChild(playerBlock);
+            }
         }
 
+         const usedNumbers = new Set();
         // Example usage
         let tables = createTables(NumberOfPlayers);
         renderTables(tables);
+
+        function generateRandomNumber(){
+           
+            let num;
+            do {
+                num = Math.floor(Math.random() * 25) + 1;
+            } while (usedNumbers.has(num));
+            usedNumbers.add(num);
+            return num;
+        }
+
+        document.getElementById('generate-number').addEventListener('click', () => {
+            const currentNumber = generateRandomNumber();
+            document.getElementById('current-number').textContent = `Current Number: ${currentNumber}`;
+            markNumberOnTables(currentNumber);  
+
+        });
+
+        // mark the number on all tables
+        function markNumberOnTables(number){
+            const tablesContainer = document.getElementById('bingo-card');
+            const tables = tablesContainer.getElementsByTagName('table');
+
+            for(let t=0; t<tables.length; t++){
+                const cells = tables[t].getElementsByTagName('td');
+                for(let c=0; c<cells.length; c++){
+                    if(parseInt(cells[c].textContent) === number){
+                        cells[c].style.backgroundColor = 'yellow';
+                        booltables[t+1][Math.floor(c/5)][c%5] = true;
+                        checkBingo();
+                    }
+                }
+            }
+        }
+
+        // check for bingo
+        let checkIndexes = [
+            [[0,0],[0,1],[0,2],[0,3],[0,4]],
+            [[1,0],[1,1],[1,2],[1,3],[1,4]],
+            [[2,0],[2,1],[2,2],[2,3],[2,4]],
+            [[3,0],[3,1],[3,2],[3,3],[3,4]],
+            [[4,0],[4,1],[4,2],[4,3],[4,4]],
+            [[0,0],[1,0],[2,0],[3,0],[4,0]],
+            [[0,1],[1,1],[2,1],[3,1],[4,1]],
+            [[0,2],[1,2],[2,2],[3,2],[4,2]],
+            [[0,3],[1,3],[2,3],[3,3],[4,3]],
+            [[0,4],[1,4],[2,4],[3,4],[4,4]],
+            [[0,0],[1,1],[2,2],[3,3],[4,4]],
+            [[0,4],[1,3],[2,2],[3,1],[4,0]]
+        ];
+        function checkBingo(){
+            
+            let bingoCounts = new Array(NumberOfPlayers).fill(0);
+            console.log("Checking for Bingo...");
+            for(let player in booltables){
+                let boolTable = booltables[player];
+                for(let line of checkIndexes){
+                    let bingo = true;
+                    for(let [r,c] of line){
+                        if(boolTable[r][c] == 0){
+                            bingo = false;
+                            break;
+                        }
+                    }
+                    if(bingo){
+                        bingoCounts[player-1]++;;
+                    }
+                }
+            }
+            const tablesContainer = document.getElementById('bingo-card');
+            const results = tablesContainer.getElementsByTagName('div');
+            let word = "BINGO";
+            for(let player=1; player<=NumberOfPlayers; player++){
+                    let resultInput = results[player-1].getElementsByTagName("input")[0];
+                    resultInput.value = word.slice(0, bingoCounts[player-1]);
+            }
+            // anounce winner and diable generate button
+            let wonPlayers = [];
+            for(let player=1; player<=NumberOfPlayers; player++){
+                if(bingoCounts[player-1] >= 5){
+                    document.getElementById('generate-number').disabled = true;
+                    wonPlayers.push(player);
+                }
+            }
+            if(wonPlayers.length > 0){
+                document.getElementById("result").textContent = `Player ${wonPlayers.join(", ")} wins!`;
+            }
+        }
+
 
     </script>
 </body>
