@@ -1,5 +1,5 @@
 
-<h1>Data Structures in C🎯</h1>
+<h1>Data Structures in C Lang🎯</h1>
 
 Welcome to my repository of Data Structures implemented in C language!
 
